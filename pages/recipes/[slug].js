@@ -26,11 +26,12 @@ export async function getStaticProps(context) {
 //get a single item
  const response  = await contentfulClient.getEntries({
     content_type : "recipe",
-    'fields.slug' : context.params.slug //it will match the fields object from the contentful data with our slug and if it matches it allows that data to show
+    'fields.slug' : context.params.slug, //it will match the fields object from the contentful data with our slug and if it matches it allows that data to show
  })
  
  return{
-  props:{recipe:response.items[0]}
+  props:{recipe:response.items[0]},
+  revalidate:1,
  }
 }
 
